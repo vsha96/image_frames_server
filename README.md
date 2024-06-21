@@ -5,7 +5,7 @@ FastApi practice challenge
 ![Demo 2](./demo/demo2.png)
 
 ## Installation
-To set up the project, you need to have Python 3.12 installed on your machine
+To set up the project, you need to have **Python 3.12** and **Docker** installed on your machine
 
 Run `make install`
 
