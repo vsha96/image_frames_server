@@ -1,0 +1,24 @@
+name: Lint Code Base
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+    name: Run Linter
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.12'
+
+    - name: Install dependencies
+      run: |
+        make install
+
+    - name: Run Lint
+      run: make lint-auto

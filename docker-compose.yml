@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  web:
+    image: ${APP_NAME}
+    build:
+      context: .
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    volumes:
+      - ./app:/usr/src/app/app
+      - .:/usr/src/app  # Make sure the root of the project is mapped
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://user:password@db:5432/dbname
+    working_dir: /usr/src/app  # Ensure this is the directory where alembic.ini is located
+    depends_on:
+      - db
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: dbname
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
