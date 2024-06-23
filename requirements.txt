@@ -2,6 +2,7 @@ fastapi
 sqlalchemy
 asyncpg
 uvicorn
+python-dotenv
 
 numpy
 pandas

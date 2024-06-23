@@ -3,12 +3,12 @@ import os
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 
-# Define constants for database configuration
-DB_NAME = "dbname"
-DB_USER = "user"
-DB_PASSWORD = "password"
-DB_HOST = "db"
-DB_PORT = "5432"
+# Read database configuration from environment variables
+DB_NAME = os.getenv("DB_NAME", "fallback_dbname")
+DB_USER = os.getenv("DB_USER", "fallback_user")
+DB_PASSWORD = os.getenv("DB_PASSWORD", "fallback_password")
+DB_HOST = os.getenv("DB_HOST", "fallback_host")
+DB_PORT = os.getenv("DB_PORT", "fallback_port")
 
 DATABASE_URL = (
     f"postgresql+asyncpg://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
