@@ -3,7 +3,7 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
-from .database import init_db
+from .database import init_app_db
 from .image.router import router as image_router
 from .utils.router import router as utils_router
 
@@ -11,7 +11,7 @@ from .utils.router import router as utils_router
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Startup
-    await init_db()
+    await init_app_db()
     yield
     # Shutdown
 
