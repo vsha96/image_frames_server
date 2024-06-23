@@ -1,3 +1,5 @@
+import os
+
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 
@@ -30,6 +32,9 @@ async def drop_tables():
 async def init_app_db():
     await drop_tables()
     await create_tables()
+
+    if os.environ.get("TESTING") == "True":
+        return
 
     # Import CSV image data after initializing the database
     from app.image.utils import import_csv_to_db
